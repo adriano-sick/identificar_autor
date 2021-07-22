@@ -76,19 +76,15 @@ def compara_assinatura(as_a, as_b):
     pass
 
 def calcula_assinatura(texto):
-    '''IMPLEMENTAR. Essa funcao recebe um texto e deve devolver a assinatura do texto.'''
-    pass
-    tamanho_med_pal = len(list(texto)) / len(texto.split());
-    relacao_tt = n_palavras_diferentes(texto.split()) / len(texto.split());
-    hapax_lego = n_palavras_unicas(texto.split()) / len(texto.split());
-    tamanho_med_sen = num_char_sen(texto) / len(separa_sentencas(texto));#ok
-    complex_sen = num_frases(texto) / len(separa_sentencas(texto));#ok
-    tamanho_med_frase = num_char_frase(texto) / num_frases(texto);#ok
+    '''Essa funcao recebe um texto e devolve a assinatura do texto.'''
+    tamanho_med_pal = total_letras(texto) / len(texto.split());
+    relacao_tt = n_palavras_diferentes(lista_palavras(texto)) / len(texto.split());
+    hapax_lego = n_palavras_unicas(lista_palavras(texto)) / len(texto.split());
+    tamanho_med_sen = num_char_sen(texto) / len(separa_sentencas(texto));
+    complex_sen = num_frases(texto) / len(separa_sentencas(texto));
+    tamanho_med_frase = num_char_frase(texto) / num_frases(texto);
 
     assinatura = [tamanho_med_pal, relacao_tt, hapax_lego, tamanho_med_sen, complex_sen, tamanho_med_frase];
-    
-    print(assinatura);
-    print(num_char_frase(texto), num_char_sen(texto))
 
     return assinatura;
 
@@ -121,5 +117,24 @@ def num_char_frase(texto):
             caracteres += len(frase);
 
     return caracteres;
-    
+
+def lista_palavras(texto): 
+    palavras = [];
+    for sentenca in separa_sentencas(texto):
+           for frase in separa_frases(sentenca):
+               for palavra in separa_palavras(frase):
+                   palavras.append(palavra);
+
+    return palavras;
+
+def total_letras(texto):
+    letras = 0;
+    for sentenca in separa_sentencas(texto):
+           for frase in separa_frases(sentenca):
+               for palavra in separa_palavras(frase):
+                   letras += len(palavra);
+
+    return letras;
+
+
 calcula_assinatura("Então resolveu ir brincar com a Máquina pra ser também imperador dos filhos da mandioca. Mas as três cunhas deram muitas risadas e falaram que isso de deuses era gorda mentira antiga, que não tinha deus não e que com a máquina ninguém não brinca porque ela mata. A máquina não era deus não, nem possuía os distintivos femininos de que o herói gostava tanto. Era feita pelos homens. Se mexia com eletricidade com fogo com água com vento com fumo, os homens aproveitando as forças da natureza. Porém jacaré acreditou? nem o herói! Se levantou na cama e com um gesto, esse sim! bem guaçu de desdém, tó! batendo o antebraço esquerdo dentro do outro dobrado, mexeu com energia a munheca direita pras três cunhas e partiu. Nesse instante, falam, ele inventou o gesto famanado de ofensa: a pacova.");
