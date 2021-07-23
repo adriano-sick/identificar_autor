@@ -110,6 +110,7 @@ def avalia_textos(textos, ass_cp):
     return provavel_cp;
 
 def num_frases(texto):
+    '''Essa função recebe um texto e retorna o numero de frases existentes'''
     frases = 0;
     for sentenca in separa_sentencas(texto):
         frases += len(separa_frases(sentenca));
@@ -117,6 +118,7 @@ def num_frases(texto):
     return frases;
 
 def num_char_sen(texto):
+    '''essa função retorna o numero de caracteres em todas as sentenças de um texto'''
     caracteres = 0;
     for sen in separa_sentencas(texto):
         caracteres += len(sen);
@@ -124,6 +126,7 @@ def num_char_sen(texto):
     return caracteres;
 
 def num_char_frase(texto):
+    '''essa função retorna o numero de caracteres em todas as frases de um texto'''
     caracteres = 0;
     for sen in separa_sentencas(texto):
         for frase in separa_frases(sen):
@@ -132,6 +135,7 @@ def num_char_frase(texto):
     return caracteres;
 
 def lista_palavras(texto): 
+    '''Essa função retorna uma lista de palavras contendo todas as palavras do texto'''
     palavras = [];
     for sentenca in separa_sentencas(texto):
            for frase in separa_frases(sentenca):
@@ -141,6 +145,7 @@ def lista_palavras(texto):
     return palavras;
 
 def total_letras(texto):
+    '''Essa função retorna o número total de letras em um texto'''
     letras = 0;
     for sentenca in separa_sentencas(texto):
            for frase in separa_frases(sentenca):
@@ -150,10 +155,11 @@ def total_letras(texto):
     return letras;
 
 
-def teste ():
+def main ():
+    '''função para rodar o programa em sua totalidade. Omita para apresentá-la ao corretor automático''' 
     ass_cp = le_assinatura();
     textos = le_textos();
    
     return print("O autor do texto", avalia_textos(textos, ass_cp), "está infectado com COH-PIAH");
 
-teste();
+main(); #chamada para a função main
