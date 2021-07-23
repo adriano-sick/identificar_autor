@@ -72,8 +72,15 @@ def n_palavras_diferentes(lista_palavras):
     return len(freq);
 
 def compara_assinatura(as_a, as_b):
-    '''IMPLEMENTAR. Essa funcao recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas.'''
-    pass;
+    '''Essa funcao recebe duas assinaturas de texto e devolve o grau de similaridade nas assinaturas.'''
+    i = 0;
+    soma = 0;
+    while i < len(as_b):
+        soma += abs(as_a[i] - as_b[i]);
+        i += 1;
+
+    return soma / 6;
+
 
 def calcula_assinatura(texto):
     '''Essa funcao recebe um texto e devolve a assinatura do texto.'''
@@ -89,10 +96,18 @@ def calcula_assinatura(texto):
     
 
 def avalia_textos(textos, ass_cp):
-    '''IMPLEMENTAR. Essa funcao recebe uma lista de textos e uma assinatura ass_cp e 
-    deve devolver o numero (1 a n) do texto com maior probabilidade de ter sido infectado por COH-PIAH.'''
-    pass;
+    '''Essa funcao recebe uma lista de textos e uma assinatura ass_cp e 
+    devolve o numero (1 a n) do texto com maior probabilidade de ter sido infectado por COH-PIAH.'''
+    i = 0;
+    provavel_cp = 1;
+    valor_cp = compara_assinatura(calcula_assinatura(textos[0]), ass_cp);
+    while i < len(textos):
+        if compara_assinatura(calcula_assinatura(textos[i]), ass_cp) < valor_cp:
+            valor_cp = compara_assinatura(calcula_assinatura(textos[i]), ass_cp);
+            provavel_cp = i + 1;
+        i += 1;
 
+    return provavel_cp;
 
 def num_frases(texto):
     frases = 0;
@@ -135,4 +150,10 @@ def total_letras(texto):
     return letras;
 
 
-calcula_assinatura("Então resolveu ir brincar com a Máquina pra ser também imperador dos filhos da mandioca. Mas as três cunhas deram muitas risadas e falaram que isso de deuses era gorda mentira antiga, que não tinha deus não e que com a máquina ninguém não brinca porque ela mata. A máquina não era deus não, nem possuía os distintivos femininos de que o herói gostava tanto. Era feita pelos homens. Se mexia com eletricidade com fogo com água com vento com fumo, os homens aproveitando as forças da natureza. Porém jacaré acreditou? nem o herói! Se levantou na cama e com um gesto, esse sim! bem guaçu de desdém, tó! batendo o antebraço esquerdo dentro do outro dobrado, mexeu com energia a munheca direita pras três cunhas e partiu. Nesse instante, falam, ele inventou o gesto famanado de ofensa: a pacova.");
+def teste ():
+    ass_cp = le_assinatura();
+    textos = le_textos();
+   
+    return print("O autor do texto", avalia_textos(textos, ass_cp), "está infectado com COH-PIAH");
+
+teste();
