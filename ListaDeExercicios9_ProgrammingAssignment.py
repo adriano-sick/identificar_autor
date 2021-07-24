@@ -20,11 +20,11 @@ def le_textos():
     '''A funcao le todos os textos a serem comparados e devolve uma lista contendo cada texto como um elemento'''
     i = 1;
     textos = [];
-    texto = input("Digite o texto " + str(i) +" (aperte enter para sair):");
+    texto = input("\nDigite o texto " + str(i) +" (aperte enter para sair):\n\n");
     while texto:
         textos.append(texto);
         i += 1;
-        texto = input("Digite o texto " + str(i) +" (aperte enter para sair):");
+        texto = input("\nDigite o texto " + str(i) +" (aperte enter para sair):\n\n");
 
     return textos;
 
@@ -157,9 +157,10 @@ def total_letras(texto):
 
 def main ():
     '''função para rodar o programa em sua totalidade. Omita para apresentá-la ao corretor automático''' 
-    ass_cp = le_assinatura();
+    texto_ori = input("Insira o texto autoral: ");
+    ass_cp = calcula_assinatura(texto_ori);
     textos = le_textos();
    
-    return print("O autor do texto", avalia_textos(textos, ass_cp), "está infectado com COH-PIAH");
+    return print("O texto", avalia_textos(textos, ass_cp), "possui a assinatura mais proxima ao texto autoral dentre os textos apresentados");
 
 main(); #chamada para a função main
